@@ -75,8 +75,8 @@
 ### 1. Clone & Setup
 ```bash
 # Clone the repository
-git clone <your-repo-url>
-cd ecommerce-platform
+git clone https://github.com/Aksha0217/ai-Advanced-ecommerce-platform.git
+cd ai-Advanced-ecommerce-platform
 
 # Start infrastructure services
 docker-compose up -d postgres redis
@@ -270,10 +270,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **React** community for the frontend framework
 - **Docker** for containerization technology
 
-## 📞 Support
 
-For support, email support@ecommerce-platform.com or join our Slack channel.
 
----
 
-**Built with ❤️ using cutting-edge technologies to create an exceptional e-commerce experience.**
