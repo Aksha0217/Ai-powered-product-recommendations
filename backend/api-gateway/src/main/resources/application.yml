@@ -1,0 +1,61 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  main:
+    web-application-type: reactive
+  cloud:
+    gateway:
+      routes:
+        # User Service Routes
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/auth/**, /api/users/**
+          filters:
+            - StripPrefix=1
+
+        # Product Service Routes
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/api/products/**
+          filters:
+            - StripPrefix=1
+
+        # Recommendation Service Routes
+        - id: recommendation-service
+          uri: lb://recommendation-service
+          predicates:
+            - Path=/api/recommendations/**, /api/interactions/**
+          filters:
+            - StripPrefix=1
+
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Headers
+        - DedupeResponseHeader=Access-Control-Allow-Credentials
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+  endpoint:
+    health:
+      show-details: always
+    gateway:
+      enabled: true
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty: INFO

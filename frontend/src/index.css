@@ -1,0 +1,208 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 14%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 14%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 262 83% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 32% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 262 83% 58%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 217 32% 22%;
+    --input: 217 32% 22%;
+    --ring: 262 83% 58%;
+
+    --radius: 0.75rem;
+
+    --neon-purple: 262 83% 58%;
+    --neon-blue: 217 91% 60%;
+    --neon-cyan: 189 94% 43%;
+    --neon-pink: 330 81% 60%;
+    --success: 142 76% 36%;
+    --warning: 38 92% 50%;
+    
+    --chart-1: 262 83% 58%;
+    --chart-2: 217 91% 60%;
+    --chart-3: 189 94% 43%;
+    --chart-4: 330 81% 60%;
+    --chart-5: 142 76% 36%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(262 83% 58%) 0%, hsl(217 91% 60%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(330 81% 60%) 0%, hsl(262 83% 58%) 100%);
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(189 94% 43%) 100%);
+    --gradient-radial: radial-gradient(circle at center, hsl(262 83% 58% / 0.15) 0%, transparent 70%);
+    --gradient-mesh: linear-gradient(135deg, hsl(262 83% 58% / 0.1) 0%, hsl(217 91% 60% / 0.1) 50%, hsl(330 81% 60% / 0.1) 100%);
+    
+    --shadow-glow: 0 0 40px hsl(262 83% 58% / 0.4);
+    --shadow-glow-lg: 0 0 60px hsl(262 83% 58% / 0.5), 0 0 100px hsl(217 91% 60% / 0.3);
+    --shadow-elevated: 0 20px 60px hsl(0 0% 0% / 0.3);
+    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.2);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 240 10% 8%;
+    --foreground: 220 17% 93%;
+
+    --card: 240 8% 12%;
+    --card-foreground: 220 17% 93%;
+
+    --popover: 240 8% 12%;
+    --popover-foreground: 220 17% 93%;
+
+    --primary: 262 83% 58%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 6% 18%;
+    --secondary-foreground: 220 17% 93%;
+
+    --muted: 240 6% 18%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 262 83% 58%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 6% 18%;
+    --input: 240 6% 18%;
+    --ring: 262 83% 58%;
+
+    --neon-purple: 262 83% 58%;
+    --neon-blue: 217 91% 60%;
+    --neon-cyan: 189 94% 43%;
+    --neon-pink: 330 81% 60%;
+    --success: 142 76% 36%;
+    --warning: 38 92% 50%;
+    
+    --chart-1: 262 83% 58%;
+    --chart-2: 217 91% 60%;
+    --chart-3: 189 94% 43%;
+    --chart-4: 330 81% 60%;
+    --chart-5: 142 76% 36%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(262 83% 58%) 0%, hsl(217 91% 60%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(330 81% 60%) 0%, hsl(262 83% 58%) 100%);
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(189 94% 43%) 100%);
+    --gradient-radial: radial-gradient(circle at center, hsl(262 83% 58% / 0.2) 0%, transparent 70%);
+    --gradient-mesh: linear-gradient(135deg, hsl(262 83% 58% / 0.15) 0%, hsl(217 91% 60% / 0.15) 50%, hsl(330 81% 60% / 0.15) 100%);
+    
+    --shadow-glow: 0 0 50px hsl(262 83% 58% / 0.6);
+    --shadow-glow-lg: 0 0 80px hsl(262 83% 58% / 0.7), 0 0 120px hsl(217 91% 60% / 0.4);
+    --shadow-elevated: 0 20px 60px hsl(0 0% 0% / 0.5);
+    --shadow-card: 0 8px 32px hsl(0 0% 0% / 0.3);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  .glass-card {
+    @apply bg-card/50 backdrop-blur-xl border border-border/50 shadow-[0_8px_32px_rgba(0,0,0,0.2)];
+  }
+  
+  .glass-card-hover {
+    @apply glass-card transition-all duration-500 hover:shadow-[0_8px_32px_rgba(168,85,247,0.3)] hover:border-primary/30 hover:scale-[1.02];
+  }
+  
+  .neon-text {
+    text-shadow: 0 0 20px hsl(var(--neon-purple) / 0.8), 0 0 40px hsl(var(--neon-purple) / 0.4);
+  }
+  
+  .neon-border {
+    box-shadow: 0 0 20px hsl(var(--neon-purple) / 0.5), inset 0 0 20px hsl(var(--neon-purple) / 0.1);
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  @keyframes glow {
+    0%, 100% {
+      filter: drop-shadow(0 0 10px hsl(var(--neon-purple) / 0.5));
+    }
+    50% {
+      filter: drop-shadow(0 0 30px hsl(var(--neon-purple) / 0.8));
+    }
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+  
+  .shimmer {
+    animation: shimmer 3s linear infinite;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(var(--primary) / 0.2) 50%,
+      transparent 100%
+    );
+    background-size: 1000px 100%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}

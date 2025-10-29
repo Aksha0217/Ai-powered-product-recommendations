@@ -1,0 +1,205 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: ecommerce-postgres
+    environment:
+      POSTGRES_DB: ecommerce_db
+      POSTGRES_USER: ecommerce_user
+      POSTGRES_PASSWORD: ecommerce_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/postgresql/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    networks:
+      - ecommerce-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ecommerce_user -d ecommerce_db"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # Redis for caching and sessions
+  redis:
+    image: redis:7-alpine
+    container_name: ecommerce-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - ecommerce-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # Eureka Server
+  eureka-server:
+    build:
+      context: ./backend/eureka-server
+      dockerfile: Dockerfile
+    container_name: ecommerce-eureka
+    ports:
+      - "8761:8761"
+    networks:
+      - ecommerce-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8761 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # Config Server
+  config-server:
+    build:
+      context: ./backend/config-server
+      dockerfile: Dockerfile
+    container_name: ecommerce-config
+    ports:
+      - "8888:8888"
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+    networks:
+      - ecommerce-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8888/actuator/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # User Service
+  user-service:
+    build:
+      context: ./backend/user-service
+      dockerfile: Dockerfile
+    container_name: ecommerce-user-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/ecommerce_db
+      - SPRING_DATASOURCE_USERNAME=ecommerce_user
+      - SPRING_DATASOURCE_PASSWORD=ecommerce_pass
+    networks:
+      - ecommerce-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8082/actuator/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # Product Service
+  product-service:
+    build:
+      context: ./backend/product-service
+      dockerfile: Dockerfile
+    container_name: ecommerce-product-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/ecommerce_db
+      - SPRING_DATASOURCE_USERNAME=ecommerce_user
+      - SPRING_DATASOURCE_PASSWORD=ecommerce_pass
+    networks:
+      - ecommerce-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8081/actuator/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # Recommendation Service
+  recommendation-service:
+    build:
+      context: ./backend/recommendation-service
+      dockerfile: Dockerfile
+    container_name: ecommerce-recommendation-service
+    ports:
+      - "8083:8083"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka/
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/ecommerce_db
+      - SPRING_DATASOURCE_USERNAME=ecommerce_user
+      - SPRING_DATASOURCE_PASSWORD=ecommerce_pass
+      - SPRING_REDIS_HOST=redis
+      - SPRING_REDIS_PORT=6379
+    networks:
+      - ecommerce-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8083/actuator/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # API Gateway
+  api-gateway:
+    build:
+      context: ./backend/api-gateway
+      dockerfile: Dockerfile
+    container_name: ecommerce-api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+      user-service:
+        condition: service_healthy
+      product-service:
+        condition: service_healthy
+      recommendation-service:
+        condition: service_healthy
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://eureka-server:8761/eureka/
+    volumes:
+      - ./frontend/dist:/app/static
+    networks:
+      - ecommerce-network
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/actuator/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  ecommerce-network:
+    driver: bridge
