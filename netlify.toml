@@ -1,0 +1,12 @@
+[build]
+  publish = "frontend/dist"
+  command = "cd frontend && npm run build"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NPM_CONFIG_PRODUCTION = "false"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
