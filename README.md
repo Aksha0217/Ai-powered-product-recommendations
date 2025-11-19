@@ -1,168 +1,249 @@
 
-# 🛒 AI-Powered Product Recommendations  
-An intelligent e-commerce recommendation system that delivers personalized product suggestions using machine learning. Designed for modern online stores to improve user engagement, conversions, and shopping experience.
 
----
+# 🚀 Advanced E-commerce Platform with AI-Powered Recommendations
 
-## 🚀 Features
-- 🔍 **AI-based Product Recommendations**
-- 🤖 **Real-time suggestions** using ML models  
-- ⚡ **Fast inference** with optimized algorithms  
-- 🛒 **E-commerce ready UI components**  
-- 📊 **Smart ranking based on user behavior**  
-- 🧠 **Embeddings + similarity search**  
-- 🎯 **High accuracy recommendations**
+[![Java](https://img.shields.io/badge/Java-17+-orange)](https://openjdk.org/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen)](https://spring.io/projects/spring-boot)
+[![React](https://img.shields.io/badge/React-18-blue)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-4.x-blue)](https://www.typescriptlang.org/)
+[![Docker](https://img.shields.io/badge/Docker-Ready-blue)](https://www.docker.com/)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+
+> An enterprise-grade e-commerce platform powered by **AI product recommendations**, real-time updates, scalable microservices, and a modern frontend design.
 
 
 
 ---
 
-## 🧠 How It Works (High-Level Architecture)
-1. **Product Data Processing**  
-   - Fetch & clean product data  
-   - Generate embeddings using ML models  
+# ✨ Key Features
 
-2. **User Behavior Tracking**  
-   - Search history, clicks, cart items, interactions  
+## 🤖 AI Recommendation Engine
 
-3. **Similarity Engine**  
-   - Cosine similarity  
-   - Nearest-neighbor search  
+* Smart suggestions powered by **Hugging Face**
+* Collaborative filtering
+* Content-based filtering
+* Hybrid AI recommendations
+* Real-time updates via WebSocket
 
-4. **Real-Time Recommender**  
-   - Returns best-matched products instantly  
+## ⚡ Real-Time Capabilities
 
-5. **Frontend UI**  
-   - Shows ranked product suggestions  
-   - Smooth animations + modern UI  
+* Live recommendation updates
+* Instant product availability tracking
+* Real-time user activity stream
+* Live search
 
----
+## 🏢 Enterprise Architecture
 
-## 🛠️ Tech Stack
-### **Backend**
-- Python  
-- FastAPI / Flask  
-- Scikit-learn  
-- Pandas  
-- Sentence Transformers (optional)
-
-### **Frontend**
-- React / Next.js  
-- TailwindCSS  
-
-### **Database**
-- MongoDB / MySQL  
-- Vector DB (FAISS / Pinecone optional)
+* Microservices using Spring Cloud
+* JWT + OAuth2 authentication
+* API Gateway + rate limiting
+* Centralized Config Server
+* Full analytics dashboard
 
 ---
 
-## 📂 Project Structure
-```
+# 🛠️ Tech Stack
 
-├── backend/
-│   ├── model/
-│   ├── recommender.py
-│   ├── api.py
-│   ├── requirements.txt
-│
-├── frontend/
-│   ├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── App.js
-│
-├── README.md
+## Frontend
 
-````
+* React 18 + TypeScript
+* Tailwind CSS + shadcn/ui
+* Vite build tool
+* Responsive UI
+
+## Backend
+
+* Java 17
+* Spring Boot 3.x
+* Spring Cloud
+* WebSocket
+* PostgreSQL + Redis
+
+## AI / ML
+
+* Hugging Face API
+* TensorFlow Java
+* Collaborative filtering algorithms
+
+## DevOps
+
+* Docker + Docker Compose
+* GitHub Actions CI/CD
+* Grafana + Prometheus
 
 ---
 
-## 🧩 Installation & Setup
+# 🚀 Quick Start
 
-### 1️⃣ Clone the repository
-```sh
+## Prerequisites
+
+* Java 17+
+* Node.js 16+
+* Docker + Docker Compose
+* Maven 3.6+
+
+---
+
+## 1️⃣ Clone & Setup
+
+```bash
 git clone https://github.com/Aksha0217/Ai-powered-product-recommendations.git
 cd Ai-powered-product-recommendations
-````
 
----
+docker-compose up -d postgres redis
 
-## ⚙️ Backend Setup
-
-```sh
 cd backend
-pip install -r requirements.txt
-python api.py
+mvn clean install
+mvn spring-boot:run
 ```
 
-Backend runs on:
-`http://localhost:8000`
-
 ---
 
-## 🎨 Frontend Setup
+## 2️⃣ Start Frontend
 
-```sh
+```bash
 cd frontend
 npm install
-npm start
-```
-
-Frontend runs on:
-`http://localhost:3000`
-
----
-
-## 🧪 Testing the Recommendation API
-
-Send a POST request:
-
-```json
-POST /recommend
-{
-  "product_title": "Wireless Bluetooth Headphones"
-}
-```
-
-Response example:
-
-```json
-{
-  "recommendations": [
-    "Noise Cancelling Headphones",
-    "Wireless Earbuds",
-    "Bass Boost Over-Ear Headphones"
-  ]
-}
+npm run dev
 ```
 
 ---
 
-## 📈 Future Enhancements
+## 3️⃣ Access URLs
 
-* 🔮 Deep-learning recommendation model
-* 🌐 Multi-language support
-* 🛍️ Cross-selling & upselling engine
-* 🧾 Personalized product feeds
-* 📱 Mobile app support
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome!
-Feel free to submit issues or pull requests.
+* **Frontend:** [http://localhost:5173](http://localhost:5173)
+* **Gateway:** [http://localhost:8080](http://localhost:8080)
+* **Eureka:** [http://localhost:8761](http://localhost:8761)
+* **Swagger Docs:** [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
 ---
 
-## 📜 License
+# 🏗️ Project Structure
 
-This project is licensed under the **MIT License**.
+### Backend
+
+```
+backend/
+├── api-gateway/
+├── user-service/
+├── product-service/
+├── recommendation-service/
+├── eureka-server/
+└── config-server/
+```
+
+### Frontend
+
+```
+frontend/
+├── components/
+├── pages/
+├── hooks/
+└── utils/
+```
+
+### Infrastructure
+
+```
+database/
+└── postgresql/schema.sql
+docker-compose.yml
+```
 
 ---
 
-## ⭐ Show Your Support
+# 📊 Architecture Overview
 
-If you like this project, please **star the repository** on GitHub ⭐
+```
+Frontend (React)
+      │
+      ▼
+API Gateway (Spring Cloud)
+      │
+ ┌────┼──────────┬─────────┐
+ │    │          │         │
+ ▼    ▼          ▼         ▼
+User Service  Product   Recommendation
+                Service     Service (AI)
+      └──────────┬───────────┘
+                 ▼
+            PostgreSQL & Redis
+```
 
+---
+
+# 🔧 Configuration
+
+## Environment Variables
+
+```bash
+POSTGRES_DB=ecommerce_db
+POSTGRES_USER=ecommerce_user
+POSTGRES_PASSWORD=ecommerce_pass
+
+REDIS_HOST=localhost
+REDIS_PORT=6379
+
+HUGGINGFACE_API_KEY=your_api_key_here
+JWT_SECRET=your_jwt_secret_here
+```
+
+---
+
+# 🧪 Testing
+
+## Backend
+
+```bash
+mvn test
+```
+
+## Frontend
+
+```bash
+npm test
+```
+
+## Integration Testing
+
+```bash
+docker-compose up -d
+mvn verify -P integration-test
+```
+
+---
+
+# 📈 Performance & Scalability
+
+* Redis caching
+* CDN optimizations
+* Horizontal scaling support
+* Prometheus metrics
+* Grafana dashboards
+* Circuit breakers with Resilience4j
+
+---
+
+# 🔒 Security
+
+* JWT-based authentication
+* OAuth2 login
+* XSS/CSRF protection
+* HSTS + CSP security headers
+
+---
+
+# 🤝 Contributing
+
+1. Fork
+2. Create feature branch
+3. Commit
+4. Push
+5. Open PR
+
+---
+
+# 📝 License
+
+Licensed under the **MIT License**.
 
