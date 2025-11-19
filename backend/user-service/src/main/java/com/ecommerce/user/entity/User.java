@@ -26,7 +26,7 @@ public class User {
     @Size(min = 8)
     private String password;
 
-    @Column(columnDefinition = "jsonb")
+    @Column(columnDefinition = "TEXT")
     private String preferences;
 
     @CreationTimestamp

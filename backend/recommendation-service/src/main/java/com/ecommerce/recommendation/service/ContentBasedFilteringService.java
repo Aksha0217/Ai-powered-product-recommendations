@@ -3,20 +3,19 @@ package com.ecommerce.recommendation.service;
 import com.ecommerce.recommendation.client.HuggingFaceClient;
 import com.ecommerce.recommendation.entity.Recommendation;
 import com.ecommerce.recommendation.repository.RecommendationRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
-@Slf4j
 public class ContentBasedFilteringService {
+
+    private static final Logger log = Logger.getLogger(ContentBasedFilteringService.class.getName());
 
     private final HuggingFaceClient huggingFaceClient;
     private final RecommendationRepository recommendationRepository;
@@ -26,7 +25,7 @@ public class ContentBasedFilteringService {
      * Recommends products similar to ones the user has viewed/liked
      */
     public List<Recommendation> getContentBasedRecommendations(Long userId, int limit) {
-        log.info("Generating content-based recommendations for user: {}", userId);
+        log.info("Generating content-based recommendations for user: " + userId);
 
         // Placeholder implementation - in a real system, this would:
         // 1. Get user's liked/viewed products
@@ -56,7 +55,7 @@ public class ContentBasedFilteringService {
      * Get similar products to a given product
      */
     public List<Recommendation> getSimilarProducts(Long productId, int limit) {
-        log.info("Getting similar products for product: {}", productId);
+        log.info("Getting similar products for product: " + productId);
 
         List<Recommendation> recommendations = new ArrayList<>();
 
@@ -102,7 +101,7 @@ public class ContentBasedFilteringService {
      * Legacy method for backward compatibility
      */
     public Mono<List<Recommendation>> getContentBasedRecommendations(Long userId, List<String> userProductTexts, List<String> candidateProductTexts, int limit) {
-        log.info("Generating content-based recommendations for user: {}", userId);
+        log.info("Generating content-based recommendations for user: " + userId);
 
         if (userProductTexts.isEmpty() || candidateProductTexts.isEmpty()) {
             return Mono.just(Collections.emptyList());
@@ -155,7 +154,7 @@ public class ContentBasedFilteringService {
                     .collect(Collectors.toList());
         }).doOnNext(recommendations -> {
             recommendationRepository.saveAll(recommendations);
-            log.info("Generated {} content-based recommendations for user: {}", recommendations.size(), userId);
+            log.info("Generated " + recommendations.size() + " content-based recommendations for user: " + userId);
         });
     }
 

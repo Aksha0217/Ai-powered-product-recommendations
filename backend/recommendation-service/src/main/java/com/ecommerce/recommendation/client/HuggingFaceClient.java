@@ -1,8 +1,6 @@
 package com.ecommerce.recommendation.client;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -11,19 +9,23 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 @Component
-@RequiredArgsConstructor
-@Slf4j
 public class HuggingFaceClient {
 
     private final WebClient webClient;
+    private static final Logger log = Logger.getLogger(HuggingFaceClient.class.getName());
 
     @Value("${huggingface.api.token}")
     private String apiKey;
 
     @Value("${huggingface.api.url}")
     private String baseUrl;
+
+    public HuggingFaceClient(WebClient webClient) {
+        this.webClient = webClient;
+    }
 
     /**
      * Get embeddings for product text using Hugging Face inference API

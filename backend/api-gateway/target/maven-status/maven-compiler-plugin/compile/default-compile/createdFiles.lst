@@ -1,4 +1,2 @@
 com\ecommerce\gateway\ApiGatewayApplication.class
-com\ecommerce\gateway\config\WebConfig.class
-com\ecommerce\gateway\config\WebConfig$1.class
 com\ecommerce\gateway\config\SecurityConfig.class

@@ -4,19 +4,18 @@ import com.ecommerce.recommendation.entity.Recommendation;
 import com.ecommerce.recommendation.entity.UserInteraction;
 import com.ecommerce.recommendation.repository.RecommendationRepository;
 import com.ecommerce.recommendation.repository.UserInteractionRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
-@Slf4j
 public class CollaborativeFilteringService {
+
+    private static final Logger log = Logger.getLogger(CollaborativeFilteringService.class.getName());
 
     private final UserInteractionRepository interactionRepository;
     private final RecommendationRepository recommendationRepository;
@@ -26,12 +25,12 @@ public class CollaborativeFilteringService {
      * Finds similar users and recommends products they liked
      */
     public List<Recommendation> getUserBasedRecommendations(Long userId, int limit) {
-        log.info("Generating user-based collaborative filtering recommendations for user: {}", userId);
+        log.info("Generating user-based collaborative filtering recommendations for user: " + userId);
 
         // Get user's interaction history
         List<UserInteraction> userInteractions = interactionRepository.findByUserIdOrderByTimestampDesc(userId);
         if (userInteractions.isEmpty()) {
-            log.info("No interactions found for user: {}", userId);
+            log.info("No interactions found for user: " + userId);
             return Collections.emptyList();
         }
 
@@ -67,7 +66,7 @@ public class CollaborativeFilteringService {
      * Finds products similar to ones the user has liked
      */
     public List<Recommendation> getItemBasedRecommendations(Long userId, int limit) {
-        log.info("Generating item-based collaborative filtering recommendations for user: {}", userId);
+        log.info("Generating item-based collaborative filtering recommendations for user: " + userId);
 
         // Get products user has positively interacted with
         List<UserInteraction> positiveInteractions = interactionRepository

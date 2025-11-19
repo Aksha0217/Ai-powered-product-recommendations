@@ -1,7 +1,12 @@
 D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\recommendation-service\src\main\java\com\ecommerce\recommendation\entity\UserInteraction.java
+D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\recommendation-service\src\main\java\com\ecommerce\recommendation\service\ContentBasedFilteringService.java
+D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\recommendation-service\src\main\java\com\ecommerce\recommendation\client\HuggingFaceClient.java
 D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\recommendation-service\src\main\java\com\ecommerce\recommendation\repository\RecommendationRepository.java
+D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\recommendation-service\src\main\java\com\ecommerce\recommendation\service\CollaborativeFilteringService.java
 D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\recommendation-service\src\main\java\com\ecommerce\recommendation\dto\UserInteractionDTO.java
+D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\recommendation-service\src\main\java\com\ecommerce\recommendation\controller\RecommendationController.java
 D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\recommendation-service\src\main\java\com\ecommerce\recommendation\RecommendationServiceApplication.java
 D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\recommendation-service\src\main\java\com\ecommerce\recommendation\dto\RecommendationDTO.java
 D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\recommendation-service\src\main\java\com\ecommerce\recommendation\entity\Recommendation.java
 D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\recommendation-service\src\main\java\com\ecommerce\recommendation\repository\UserInteractionRepository.java
+D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\recommendation-service\src\main\java\com\ecommerce\recommendation\service\HybridRecommendationService.java

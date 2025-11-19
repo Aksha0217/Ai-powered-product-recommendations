@@ -37,7 +37,7 @@ public class HybridRecommendationService {
      */
     @Cacheable(value = "hybridRecommendations", key = "#userId + '_' + #limit")
     public List<RecommendationDTO> getHybridRecommendations(Long userId, int limit) {
-        System.out.println("Generating hybrid recommendations for user: " + userId);
+        System.out.println("Generating hybrid recommendations for user: {}", userId);
 
         // Get recommendations from both algorithms
         List<Recommendation> collaborativeRecs = collaborativeFilteringService
@@ -108,7 +108,7 @@ public class HybridRecommendationService {
             .limit(limit)
             .collect(Collectors.toList());
 
-        System.out.println("Generated " + hybridRecommendations.size() + " hybrid recommendations for user: " + userId);
+        System.out.println("Generated {} hybrid recommendations for user: {}", hybridRecommendations.size(), userId);
         return hybridRecommendations;
     }
 

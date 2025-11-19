@@ -36,7 +36,7 @@ public class RecommendationController {
             @RequestParam(defaultValue = "10") int limit,
             @RequestParam(defaultValue = "HYBRID") String algorithm) {
 
-        System.out.println("Getting recommendations for user: " + userId + " with algorithm: " + algorithm);
+        System.out.println("Getting recommendations for user: {} with algorithm: {}", userId, algorithm);
 
         List<RecommendationDTO> recommendations;
 
@@ -77,7 +77,7 @@ public class RecommendationController {
             @PathVariable Long productId,
             @RequestParam(defaultValue = "10") int limit) {
 
-        System.out.println("Getting similar products for product: " + productId);
+        System.out.println("Getting similar products for product: {}", productId);
 
         List<RecommendationDTO> recommendations = contentBasedFilteringService
                 .getSimilarProducts(productId, limit)
@@ -93,7 +93,7 @@ public class RecommendationController {
      */
     @PostMapping("/interaction")
     public ResponseEntity<Void> recordInteraction(@RequestBody UserInteractionDTO interactionDTO) {
-        System.out.println("Recording interaction: " + interactionDTO);
+        System.out.println("Recording interaction: {}", interactionDTO);
 
         // This would typically call a service to save the interaction
         // For now, we'll just log it
@@ -125,7 +125,7 @@ public class RecommendationController {
      */
     @GetMapping("/user/{userId}/realtime")
     public ResponseEntity<List<RecommendationDTO>> getRealTimeUpdates(@PathVariable Long userId) {
-        System.out.println("Getting real-time updates for user: " + userId);
+        System.out.println("Getting real-time updates for user: {}", userId);
 
         List<RecommendationDTO> updates = hybridRecommendationService.getRealTimeUpdates(userId);
         return ResponseEntity.ok(updates);

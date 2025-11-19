@@ -1,0 +1,15 @@
+com\ecommerce\eureka\dto\DashboardUpdate.class
+com\ecommerce\eureka\controller\EurekaDashboardController.class
+com\ecommerce\eureka\dto\BusinessMetrics.class
+com\ecommerce\eureka\dto\ScalingRecommendation$ScalingRecommendationBuilder.class
+com\ecommerce\eureka\service\AIPerformanceService.class
+com\ecommerce\eureka\dto\AIPerformance$AIPerformanceBuilder.class
+com\ecommerce\eureka\dto\DashboardUpdate$DashboardUpdateBuilder.class
+com\ecommerce\eureka\dto\ScalingRecommendation.class
+com\ecommerce\eureka\dto\AIPerformance.class
+com\ecommerce\eureka\service\BusinessMetricsService.class
+com\ecommerce\eureka\dto\BusinessMetrics$BusinessMetricsBuilder.class
+com\ecommerce\eureka\config\WebSocketConfig.class
+com\ecommerce\eureka\controller\DashboardWebSocketController.class
+com\ecommerce\eureka\EurekaServerApplication.class
+com\ecommerce\eureka\service\PredictiveScalingService.class

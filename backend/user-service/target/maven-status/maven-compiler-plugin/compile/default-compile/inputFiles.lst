@@ -1,0 +1,13 @@
+D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\user-service\src\main\java\com\ecommerce\user\security\JwtRequestFilter.java
+D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\user-service\src\main\java\com\ecommerce\user\security\WebSecurityConfig.java
+D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\user-service\src\main\java\com\ecommerce\user\repository\UserRepository.java
+D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\user-service\src\main\java\com\ecommerce\user\security\JwtAuthenticationEntryPoint.java
+D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\user-service\src\main\java\com\ecommerce\user\entity\User.java
+D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\user-service\src\main\java\com\ecommerce\user\UserServiceApplication.java
+D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\user-service\src\main\java\com\ecommerce\user\dto\RegisterRequest.java
+D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\user-service\src\main\java\com\ecommerce\user\security\JwtTokenProvider.java
+D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\user-service\src\main\java\com\ecommerce\user\service\UserService.java
+D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\user-service\src\main\java\com\ecommerce\user\dto\LoginRequest.java
+D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\user-service\src\main\java\com\ecommerce\user\controller\UserController.java
+D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\user-service\src\main\java\com\ecommerce\user\service\UserDetailsServiceImpl.java
+D:\AKSHA\.blackbox-editor\pulse-recs-live-main\backend\user-service\src\main\java\com\ecommerce\user\dto\AuthResponse.java
