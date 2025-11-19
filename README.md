@@ -1,13 +1,4 @@
-Here is a **fully polished, professional, ready-to-paste `README.md`** for your project **Ai-powered-product-recommendations**.
 
-You can paste this directly into your GitHub repo.
-Just **upload your demo video** where indicated.
-
----
-
-# ✅ **READY-TO-PASTE README.md**
-
-```md
 # 🛒 AI-Powered Product Recommendations  
 An intelligent e-commerce recommendation system that delivers personalized product suggestions using machine learning. Designed for modern online stores to improve user engagement, conversions, and shopping experience.
 
@@ -22,23 +13,7 @@ An intelligent e-commerce recommendation system that delivers personalized produ
 - 🧠 **Embeddings + similarity search**  
 - 🎯 **High accuracy recommendations**
 
----
 
-## 📹 Demo Video  
-Watch the complete working demo here:
-
-> 👉 **Drag & drop your video file below after opening this README in GitHub Edit Mode.**
-
-```
-
-⬇️ Upload your video here (supports MP4 / MOV / WEBM)
-GitHub will auto-generate a playable video link.
-
-```
-
-Example (will appear like this after upload):
-
-https://github.com/user-content/your-video-link.mp4
 
 ---
 
@@ -191,6 +166,3 @@ This project is licensed under the **MIT License**.
 If you like this project, please **star the repository** on GitHub ⭐
 
 
-
-Just tell me!
-```
